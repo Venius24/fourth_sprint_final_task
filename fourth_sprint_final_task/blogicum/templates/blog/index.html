@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+  <div class="container py-5">
+    <h1>{{ title }}</h1>
+
+    <!-- Вставляем лого -->
+    <img src="https://yt3.googleusercontent.com/ytc/AIdro_ldWLBXqZQgiUrQEjBIpV8XSevTsaIIqP5Vwcj-xHNe5Q=s900-c-k-c0x00ffffff-no-rj" class="img-fluid mb-4" alt="Blog logo" height="100" width="100">
+
+    {% for post in posts %}
+    <hr>
+    <article>
+      <ul>
+        <li>Место: {{ post.location }}</li>
+        <li>Дата: {{ post.date }}</li>
+        <li>
+          Категория:
+          <a href="{% url 'blog:category_posts' post.category %}">
+            {{ post.category }}
+          </a>
+        </li>
+      </ul>
+      <p>{{ post.text|truncatewords:10 }}</p>
+      <a href="posts/{{ post.id }}/">Читать полный текст</a>
+    </article>
+    {% endfor %}
+  </div>
+{% endblock %}
