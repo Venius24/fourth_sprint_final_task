@@ -8,7 +8,7 @@ from tests.conftest import try_get_url
 
 @pytest.mark.parametrize(
     'url, template', [
-        ('', 'blog/index.html'),
+        ('', 'blog/index2.html'),
         ('posts/0/', 'blog/detail.html'),
         ('posts/1/', 'blog/detail.html'),
         ('posts/2/', 'blog/detail.html'),

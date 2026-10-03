@@ -22,7 +22,7 @@
         </li>
       </ul>
       <p>{{ post.text|truncatewords:10 }}</p>
-      <a href="posts/{{ post.id }}/">Читать полный текст</a>
+      <a href="{% url 'blog:post_detail' post.id %}">Читать полный текст</a>
     </article>
     {% endfor %}
   </div>

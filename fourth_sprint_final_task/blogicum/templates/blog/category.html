@@ -1,7 +1,14 @@
-<!DOCTYPE html>
 {% extends "base.html" %}
 {% block content %}
   <div class="container py-5">
     <h1>Публикации в категории - {{ category_slug }}</h1>
+    {% for post in filtered_posts %}
+      <article>
+        <p>{{ post.text|truncatewords:10 }}</p>
+        <a href="{% url 'blog:post_detail' post.id %}">Читать полный текст</a>
+      </article>
+    {% empty %}
+      <p>Публикаций пока нет.</p>
+    {% endfor %}
   </div>
 {% endblock %}

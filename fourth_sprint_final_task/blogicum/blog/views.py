@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import Http404
 
 posts = [
     {
@@ -46,7 +46,7 @@ posts = [
 
 # Create your views here.
 def index(request):
-    template_name = 'blog/index.html'
+    template_name = 'blog/index2.html'
     title = "Лента записей"
     posts_local = posts[::-1]
     context = {
@@ -57,9 +57,9 @@ def index(request):
 
 def post_detail(request, id):
     template_name = 'blog/detail.html'
-    for post in posts:
-        if post['id'] == id:
-            break
+    post = next((post for post in posts if post['id'] == id), None)
+    if post is None:
+        raise Http404('Публикация не найдена')
     context = {
         'id': id,
         "post": post,
